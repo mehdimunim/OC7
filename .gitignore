@@ -1,0 +1,37 @@
+# Fichiers temporaires et caches
+*.swp
+*~
+.DS_Store
+Thumbs.db
+
+# Fichiers générés par l'environnement d'exécution
+__pycache__/
+*.pyc
+*.pyo
+
+# Fichiers de données volumineux ou sensibles (à adapter selon votre projet)
+data/raw/*
+data/external/*
+
+# Dossiers spécifiques à l'environnement d'exécution
+.ipynb_checkpoints/
+.vscode/
+.idea/
+
+# Fichiers de configuration spécifiques à l'utilisateur
+.env
+*.local
+
+# Fichiers générés par Jupyter Notebook
+.ipynb_checkpoints/
+
+# Packages et dépendances
+venv/
+.venv/
+env/
+
+# Autres fichiers à ignorer
+*.log
+*.csv
+*.tsv
+*.json

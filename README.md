@@ -52,9 +52,18 @@ Ce projet vise à développer un modèle de Deep Learning capable de détecter l
 
 ## Installation
 
-1.  Cloner le dépôt GitHub.
-2.  Créer un environnement virtuel Python.
-3.  Installer les packages nécessaires avec `pip install -r requirements.txt`.
+### Avec pip
+
+1. Cloner le dépôt GitHub
+2. Créer un environnement virtuel Python
+3. Installer les packages nécessaires avec `pip install -r requirements.txt`
+
+### Avec conda
+
+1. Cloner le dépôt GitHub
+2. Créer un environnement conda avec la commande `conda env create -f environment.yml`
+3. Activer l'environnement conda avec la commande `conda activate sentiment_analysis`
+
 
 ## Exécution
 

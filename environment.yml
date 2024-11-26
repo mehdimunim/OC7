@@ -1,0 +1,19 @@
+name: sentiment_analysis
+channels:
+  - conda-forge
+dependencies:
+  - python=3.8  # Ou la version de Python que tu utilises
+  - pandas
+  - scikit-learn
+  - matplotlib
+  - seaborn
+  - nltk
+  - gensim
+  - tensorflow
+  - transformers
+  - ipywidgets
+  - wordcloud
+  - jupyter
+  - pip
+  - pip:
+    - mlflow  # Si tu utilises MLflow

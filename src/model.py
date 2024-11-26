@@ -1,3 +1,4 @@
+import os
 from tensorflow.keras.models import Sequential
 from tensorflow.keras.layers import Dense, Dropout, Embedding, LSTM, Conv1D, MaxPooling1D, Flatten, Input, Lambda
 import tensorflow as tf
@@ -136,3 +137,18 @@ def create_use_model(input_shape):
     model.compile(optimizer='adam', loss='binary_crossentropy', metrics=['accuracy'])
 
     return model  
+
+def save_model_weights(model, model_name, path="../models/"):
+    """
+    Sauvegarde les poids d'un modèle.
+
+    Args:
+        model : Le modèle dont les poids doivent être sauvegardés.
+        model_name : Le nom du fichier pour sauvegarder les poids.
+        path : Le chemin du dossier où sauvegarder les poids.
+    """
+    # Créer le dossier s'il n'existe pas
+    os.makedirs(path, exist_ok=True)
+
+    # Sauvegarder les poids du modèle
+    model.save_weights(os.path.join(path, f"{model_name}.h5"))

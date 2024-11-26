@@ -10,6 +10,7 @@ dependencies:
   - nltk
   - gensim
   - tensorflow
+  - tensorflow-hub
   - transformers
   - ipywidgets
   - wordcloud

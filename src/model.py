@@ -67,7 +67,8 @@ def create_cnn_model(input_shape):
 def create_lstm_model(input_shape):
     """
     Crée un modèle LSTM (Long Short-Term Memory) avec les couches suivantes :
-    - Input(shape=input_shape) 
+    - Input(shape=input_shape)
+    - Lambda(lambda x: tf.expand_dims(x, axis=1))  # Ajout d'une dimension temporelle
     - LSTM(units=64)
     - Dropout(0.2)
     - Dense(units=1, activation='sigmoid')
@@ -81,6 +82,7 @@ def create_lstm_model(input_shape):
 
     model = Sequential()
     model.add(Input(shape=input_shape))  # Couche d'entrée avec la dimension des embeddings
+    model.add(Lambda(lambda x: tf.expand_dims(x, axis=1)))  # Ajout d'une dimension temporelle
     model.add(LSTM(units=64))
     model.add(Dropout(0.2))
     model.add(Dense(units=1, activation='sigmoid'))

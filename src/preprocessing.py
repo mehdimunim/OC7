@@ -2,6 +2,7 @@ import nltk
 from nltk.corpus import stopwords
 from nltk.stem import WordNetLemmatizer
 import re
+from sklearn.feature_selection import SelectKBest, f_classif
 from sklearn.feature_extraction.text import TfidfVectorizer 
 from gensim.models import Word2Vec, Doc2Vec
 from gensim.models.doc2vec import TaggedDocument
@@ -118,3 +119,22 @@ def vectorize_doc2vec(X_train, X_test):
     X_test_d2v = np.array([vectorize_tweet_d2v(tweet) for tweet in X_test])
 
     return X_train_d2v, X_test_d2v
+
+def reduce_dimensionality(X_train, X_test, y_train, k=1000):
+    """
+    Réduit la dimensionnalité des données en utilisant SelectKBest avec le test ANOVA F-value.
+
+    Args:
+        X_train : Les données d'entraînement.
+        X_test : Les données de test.
+        y_train : Les étiquettes d'entraînement.
+        k : Le nombre de features à sélectionner.
+
+    Returns:
+        X_train_reduced, X_test_reduced : Les données avec une dimensionnalité réduite.
+    """
+
+    selector = SelectKBest(f_classif, k=k)
+    X_train_reduced = selector.fit_transform(X_train, y_train)
+    X_test_reduced = selector.transform(X_test)
+    return X_train_reduced, X_test_reduced

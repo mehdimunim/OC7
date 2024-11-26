@@ -24,9 +24,9 @@ def evaluer_modele(model, X_test, y_test):
 
     # Calculer les métriques d'évaluation
     accuracy = accuracy_score(y_test, y_pred)
-    precision = precision_score(y_test, y_pred)
-    recall = recall_score(y_test, y_pred)
-    f1 = f1_score(y_test, y_pred)
+    precision = precision_score(y_test, y_pred, pos_label=1)  # Correction ici
+    recall = recall_score(y_test, y_pred, pos_label=1)  # Correction ici
+    f1 = f1_score(y_test, y_pred, pos_label=1)  # Correction ici
     cm = confusion_matrix(y_test, y_pred)
 
     # Afficher les métriques
@@ -59,4 +59,12 @@ def evaluer_modele(model, X_test, y_test):
         axes[1].set_xlim([0.0, 1.0])
         axes[1].set_ylim([0.0, 1.05])
         axes[1].set_xlabel('Taux de faux positifs')
-        axes[1].set_ylabel('Taux
+        axes[1].set_ylabel('Taux de vrais positifs')
+        axes[1].set_title('Courbe ROC')
+        axes[1].legend(loc="lower right")
+
+        plt.tight_layout()
+        plt.show()
+
+    except AttributeError:
+        print("Le modèle ne supporte pas la méthode predict_proba. Impossible d'afficher la courbe ROC.")

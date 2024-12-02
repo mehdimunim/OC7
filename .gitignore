@@ -35,3 +35,6 @@ env/
 *.csv
 *.tsv
 *.json
+
+# Fichiers et dossiers MLflow
+mlruns/

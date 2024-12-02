@@ -110,7 +110,7 @@ def create_bert_model(model_name="bert-base-uncased"):
     model = TFBertForSequenceClassification.from_pretrained(model_name, num_labels=2)
 
     # Compiler le modèle
-    model.compile(optimizer=tf.keras.optimizers.Adam(learning_rate=2e-5),
+    model.compile(optimizer='adam',
                   loss=tf.keras.losses.SparseCategoricalCrossentropy(from_logits=True),
                   metrics=['accuracy'])  
 

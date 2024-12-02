@@ -1,0 +1,15 @@
+artifact_uri: mlflow-artifacts:/0/6cf62f1c77754413a313ead5abd1e55d/artifacts
+end_time: 1733169037492
+entry_point_name: ''
+experiment_id: '0'
+lifecycle_stage: active
+run_id: 6cf62f1c77754413a313ead5abd1e55d
+run_name: awesome-skink-815
+run_uuid: 6cf62f1c77754413a313ead5abd1e55d
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1733169034637
+status: 3
+tags: []
+user_id: mehdi

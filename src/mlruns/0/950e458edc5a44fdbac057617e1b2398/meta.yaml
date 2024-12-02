@@ -1,0 +1,15 @@
+artifact_uri: mlflow-artifacts:/0/950e458edc5a44fdbac057617e1b2398/artifacts
+end_time: 1733168908796
+entry_point_name: ''
+experiment_id: '0'
+lifecycle_stage: active
+run_id: 950e458edc5a44fdbac057617e1b2398
+run_name: marvelous-eel-598
+run_uuid: 950e458edc5a44fdbac057617e1b2398
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1733168904817
+status: 4
+tags: []
+user_id: mehdi

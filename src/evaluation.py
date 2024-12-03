@@ -3,6 +3,7 @@ import matplotlib.pyplot as plt
 import seaborn as sns
 import numpy as np
 from tensorflow.keras.models import Sequential
+import time
 
 def evaluer_modele(model, X_test, y_test):
     """
@@ -14,13 +15,16 @@ def evaluer_modele(model, X_test, y_test):
         X_test : Les données de test.
         y_test : Les vraies étiquettes des données de test.
     """
-
+    start_time = time.time()
     # Obtenir les prédictions du modèle
     if isinstance(model, Sequential):  # Vérifier si le modèle est un modèle Keras
         y_pred = model.predict(X_test).flatten()
         y_pred = (y_pred > 0.5).astype(int)  # Convertir les probabilités en classes prédites si nécessaire
     else:
         y_pred = model.predict(X_test)
+    end_time = time.time()
+    # Calculer le temps de prédiction
+    prediction_time = end_time - start_time
 
     # Calculer les métriques d'évaluation
     accuracy = accuracy_score(y_test, y_pred)
@@ -34,6 +38,7 @@ def evaluer_modele(model, X_test, y_test):
     print(f"Precision: {precision:.4f}")
     print(f"Recall: {recall:.4f}")
     print(f"F1-score: {f1:.4f}")
+    print(f"Prediction Time: {prediction_time:.4f} seconds")
 
     # Calculer la courbe ROC et l'AUC (si possible)
     try:
@@ -68,3 +73,6 @@ def evaluer_modele(model, X_test, y_test):
 
     except AttributeError:
         print("Le modèle ne supporte pas la méthode predict_proba. Impossible d'afficher la courbe ROC.")
+
+    # Retourner les métriques et le temps de prédiction
+    return accuracy, precision, recall, f1, prediction_time

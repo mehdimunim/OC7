@@ -7,12 +7,7 @@ from transformers import BertTokenizer, TFBertForSequenceClassification
 
 def create_mlp_model(input_shape):
     """
-    Crée un modèle MLP (Multi-Layer Perceptron) avec les couches suivantes :
-    - Dense(64, activation='relu')
-    - Dropout(0.4)
-    - Dense(32, activation='relu')
-    - Dropout(0.3)
-    - Dense(1, activation='sigmoid')
+    Crée un modèle MLP (Multi-Layer Perceptron) plus complexe.
 
     Args:
         input_shape : La forme des données d'entrée du modèle.
@@ -22,10 +17,12 @@ def create_mlp_model(input_shape):
     """
 
     model = Sequential()
-    model.add(Dense(units=64, activation='relu', input_shape=input_shape))
-    model.add(Dropout(0.4))
-    model.add(Dense(units=32, activation='relu'))
-    model.add(Dropout(0.3))
+    model.add(Dense(units=128, activation='relu', input_shape=input_shape))  # Plus de neurones dans la première couche
+    model.add(Dropout(0.3))  # Diminution du dropout
+    model.add(Dense(units=64, activation='relu'))  # Ajout d'une couche cachée
+    model.add(Dropout(0.2))  # Diminution du dropout
+    model.add(Dense(units=32, activation='relu')) 
+    model.add(Dropout(0.2))  # Diminution du dropout
     model.add(Dense(units=1, activation='sigmoid'))
 
     # Compilation du modèle
@@ -65,25 +62,26 @@ def create_cnn_model(input_shape):
     return model
 
 
-def create_lstm_model(input_shape):
+def create_lstm_model(input_shape, embedding_matrix):
     """
     Crée un modèle LSTM (Long Short-Term Memory) avec les couches suivantes :
-    - Input(shape=input_shape)
-    - Lambda(lambda x: tf.expand_dims(x, axis=1))  # Ajout d'une dimension temporelle
+    - Embedding(input_dim, output_dim, weights, trainable=False)
     - LSTM(units=64)
     - Dropout(0.2)
     - Dense(units=1, activation='sigmoid')
 
     Args:
-        input_shape : La forme des données d'entrée du modèle.
+        input_shape : La forme des données d'entrée du modèle (input_dim, output_dim).
 
     Returns:
         Le modèle LSTM compilé.
     """
 
     model = Sequential()
-    model.add(Input(shape=input_shape))  # Couche d'entrée avec la dimension des embeddings
-    model.add(Lambda(lambda x: tf.expand_dims(x, axis=1)))  # Ajout d'une dimension temporelle
+    model.add(Embedding(input_dim=input_shape[0], 
+                        output_dim=input_shape[1], 
+                        weights=[embedding_matrix],
+                        trainable=False))  # Les embeddings sont figés
     model.add(LSTM(units=64))
     model.add(Dropout(0.2))
     model.add(Dense(units=1, activation='sigmoid'))
@@ -92,7 +90,7 @@ def create_lstm_model(input_shape):
     model.compile(optimizer='adam', loss='binary_crossentropy', metrics=['accuracy'])
 
     return model
-
+    
 
 def create_bert_model(model_name="bert-base-uncased"):
     """

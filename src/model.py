@@ -17,29 +17,23 @@ def create_mlp_model(input_shape):
     """
 
     model = Sequential()
-    model.add(Dense(units=128, activation='relu', input_shape=input_shape))  # Plus de neurones dans la première couche
-    model.add(Dropout(0.3))  # Diminution du dropout
-    model.add(Dense(units=64, activation='relu'))  # Ajout d'une couche cachée
+    model.add(Dense(units=256, activation='relu', input_shape=input_shape))  # Augmentation du nombre de neurones
     model.add(Dropout(0.2))  # Diminution du dropout
-    model.add(Dense(units=32, activation='relu')) 
+    model.add(Dense(units=128, activation='relu'))  # Ajout d'une couche cachée
     model.add(Dropout(0.2))  # Diminution du dropout
+    model.add(Dense(units=64, activation='relu')) 
+    model.add(Dropout(0.1))  # Diminution du dropout
     model.add(Dense(units=1, activation='sigmoid'))
 
-    # Compilation du modèle
-    model.compile(optimizer='adam', loss='binary_crossentropy', metrics=['accuracy'])
+    # Compilation du modèle avec un optimiseur plus performant
+    model.compile(optimizer=tf.keras.optimizers.Adam(learning_rate=0.001), loss='binary_crossentropy', metrics=['accuracy'])
 
     return model
 
 
 def create_cnn_model(input_shape):
     """
-    Crée un modèle CNN (Convolutional Neural Network) avec les couches suivantes :
-    - Conv1D(filters=32, kernel_size=3, activation='relu')
-    - MaxPooling1D(pool_size=2)
-    - Conv1D(filters=64, kernel_size=3, activation='relu')
-    - MaxPooling1D(pool_size=2)
-    - Flatten()
-    - Dense(units=1, activation='sigmoid')
+    Crée un modèle CNN (Convolutional Neural Network) plus complexe.
 
     Args:
         input_shape : La forme des données d'entrée du modèle.
@@ -49,32 +43,29 @@ def create_cnn_model(input_shape):
     """
 
     model = Sequential()
-    model.add(Conv1D(filters=32, kernel_size=3, activation='relu', input_shape=input_shape))
+    model.add(Conv1D(filters=64, kernel_size=5, activation='relu', input_shape=input_shape))  # Augmentation du nombre de filtres
     model.add(MaxPooling1D(pool_size=2))
-    model.add(Conv1D(filters=64, kernel_size=3, activation='relu'))
+    model.add(Conv1D(filters=128, kernel_size=5, activation='relu'))  # Augmentation du nombre de filtres
     model.add(MaxPooling1D(pool_size=2))
     model.add(Flatten())
     model.add(Dense(units=1, activation='sigmoid'))
 
-    # Compilation du modèle
-    model.compile(optimizer='adam', loss='binary_crossentropy', metrics=['accuracy'])
+    # Compilation du modèle avec un optimiseur plus performant
+    model.compile(optimizer=tf.keras.optimizers.Adam(learning_rate=0.001), loss='binary_crossentropy', metrics=['accuracy'])
 
     return model
 
 
 def create_lstm_model(input_shape, embedding_matrix):
     """
-    Crée un modèle LSTM (Long Short-Term Memory) avec les couches suivantes :
-    - Embedding(input_dim, output_dim, weights, trainable=False)
-    - LSTM(units=64)
-    - Dropout(0.2)
-    - Dense(units=1, activation='sigmoid')
+    Crée un modèle LSTM (Long Short-Term Memory) plus complexe.
 
     Args:
-        input_shape : La forme des données d'entrée du modèle (input_dim, output_dim).
+      input_shape : La forme des données d'entrée du modèle (input_dim, output_dim).
+      embedding_matrix: La matrice
 
     Returns:
-        Le modèle LSTM compilé.
+      Le modèle LSTM compilé.
     """
 
     model = Sequential()
@@ -82,12 +73,14 @@ def create_lstm_model(input_shape, embedding_matrix):
                         output_dim=input_shape[1], 
                         weights=[embedding_matrix],
                         trainable=False))  # Les embeddings sont figés
-    model.add(LSTM(units=64))
+    model.add(LSTM(units=128, return_sequences=True))  # Augmentation du nombre d'unités LSTM et ajout de return_sequences
+    model.add(Dropout(0.2))
+    model.add(LSTM(units=64))  # Ajout d'une couche LSTM supplémentaire
     model.add(Dropout(0.2))
     model.add(Dense(units=1, activation='sigmoid'))
 
-    # Compilation du modèle
-    model.compile(optimizer='adam', loss='binary_crossentropy', metrics=['accuracy'])
+    # Compilation du modèle avec un optimiseur plus performant
+    model.compile(optimizer=tf.keras.optimizers.Adam(learning_rate=0.001), loss='binary_crossentropy', metrics=['accuracy'])
 
     return model
     

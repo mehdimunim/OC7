@@ -10,19 +10,17 @@ Empaqueter tous dans MFlow (with MLFlow)
 - LSTM avec Fasttext
 - Optimisation du LSTM
 - TOC + Structure (jupyterlab)
-
+- Récupérer les metrics des données
+- Tableau comparatif 
 
 
 # TODO
 
-
-- Améliorer les performances des modèles
-
-- Récupérer les metrics des données
-
 - Faire fonctionner BERT (1% des données)
 
-- Tableau comparatif 
+- Améliorer les performances des modèles LSTM
+
+
 
 ----------------------------------------------
 

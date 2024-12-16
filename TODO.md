@@ -12,17 +12,12 @@ Empaqueter tous dans MFlow (with MLFlow)
 - TOC + Structure (jupyterlab)
 - Récupérer les metrics des données
 - Tableau comparatif 
+- Faire fonctionner BERT (1% des données).
+Faire via le evaluate_model (cf fleuryc)
+
 
 
 # TODO
-
-- Faire fonctionner BERT (1% des données)
-
-- Améliorer les performances des modèles LSTM
-
-
-
-----------------------------------------------
 
 - S'assurer que l'API fonctionne correctement
 
@@ -36,7 +31,13 @@ Empaqueter tous dans MFlow (with MLFlow)
 
 - Déclenchement d'alerte sur le Azure
 
-- Utiliser tests unitaires / déploiement continu
+- Utiliser tests unitaires + déploiement continu
+
+----------------------------------------------
+
+
+- Améliorer les performances des modèles LSTM
+
 
 
 

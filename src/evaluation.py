@@ -1,9 +1,80 @@
-from sklearn.metrics import roc_curve, auc, accuracy_score, precision_score, recall_score, f1_score, confusion_matrix
-import matplotlib.pyplot as plt
-import seaborn as sns
-import numpy as np
-from tensorflow.keras.models import Sequential
 import time
+
+import matplotlib.pyplot as plt
+import numpy as np
+import seaborn as sns
+from sklearn.metrics import (accuracy_score, precision_score, recall_score,
+                             f1_score, confusion_matrix, roc_auc_score,
+                             average_precision_score, roc_curve, auc)
+from tensorflow.keras.models import Sequential
+import tensorflow as tf
+
+def evaluer_modele_bert(model, X_test, y_test):
+    """
+    Évalue un modèle BERT en affichant les métriques d'évaluation et la courbe ROC.
+
+    Args:
+        model : Le modèle BERT à évaluer.
+        X_test : Les données de test tokenisées.
+        y_test : Les vraies étiquettes des données de test.
+    """
+
+    # Début du chronométrage
+    start_time = time.time()
+
+    # Prédire les probabilités et les labels
+    y_pred = model.predict({"input_ids": X_test["input_ids"], "attention_mask": X_test["attention_mask"]})
+    y_pred_proba = [float(x[1]) for x in tf.nn.softmax(y_pred.logits)]
+    y_pred_label = [0 if x[0] > x[1] else 1 for x in tf.nn.softmax(y_pred.logits)]
+
+    # Fin du chronométrage
+    end_time = time.time()
+
+    # Calculer le temps de prédiction
+    predict_time = end_time - start_time
+
+    # Calculer les métriques d'évaluation
+    accuracy = accuracy_score(y_test, y_pred_label)
+    precision = precision_score(y_test, y_pred_label)
+    recall = recall_score(y_test, y_pred_label)
+    f1 = f1_score(y_test, y_pred_label)
+    cm = confusion_matrix(y_test, y_pred_label)
+    roc_auc = roc_auc_score(y_test, y_pred_proba)
+    avg_precision = average_precision_score(y_test, y_pred_proba)
+
+    # Afficher les métriques
+    print(f"Accuracy: {accuracy:.4f}")
+    print(f"Precision: {precision:.4f}")
+    print(f"Recall: {recall:.4f}")
+    print(f"F1-score: {f1:.4f}")
+    print(f"ROC AUC Score: {roc_auc:.4f}")
+    print(f"Average Precision Score: {avg_precision:.4f}")
+
+    # Afficher la matrice de confusion
+    plt.figure(figsize=(5, 5))
+    sns.heatmap(cm, annot=True, fmt='d', cmap='Blues')
+    plt.title('Matrice de confusion')
+    plt.ylabel('Vraie classe')
+    plt.xlabel('Classe prédite')
+    plt.show()
+
+    # Calculer et afficher la courbe ROC
+    fpr, tpr, thresholds = roc_curve(y_test, y_pred_proba)
+    roc_auc = auc(fpr, tpr)
+
+    plt.figure()
+    plt.plot(fpr, tpr, color='darkorange', lw=2, label='Courbe ROC (AUC = %0.2f)' % roc_auc)
+    plt.plot([0, 1], [0, 1], color='navy', lw=2, linestyle='--')
+    plt.xlim([0.0, 1.0])
+    plt.ylim([0.0, 1.05])
+    plt.xlabel('Taux de faux positifs')
+    plt.ylabel('Taux de vrais positifs')
+    plt.title('Courbe ROC')
+    plt.legend(loc="lower right")
+    plt.show()
+
+    # Retourner les métriques et le temps de prédiction
+    return accuracy, precision, recall, f1, predict_time
 
 def evaluer_modele(model, X_test, y_test):
     """
@@ -28,9 +99,9 @@ def evaluer_modele(model, X_test, y_test):
 
     # Calculer les métriques d'évaluation
     accuracy = accuracy_score(y_test, y_pred)
-    precision = precision_score(y_test, y_pred, pos_label=1)  # Correction ici
-    recall = recall_score(y_test, y_pred, pos_label=1)  # Correction ici
-    f1 = f1_score(y_test, y_pred, pos_label=1)  # Correction ici
+    precision = precision_score(y_test, y_pred, pos_label=1)
+    recall = recall_score(y_test, y_pred, pos_label=1)
+    f1 = f1_score(y_test, y_pred, pos_label=1)
     cm = confusion_matrix(y_test, y_pred)
 
     # Afficher les métriques
@@ -76,3 +147,4 @@ def evaluer_modele(model, X_test, y_test):
 
     # Retourner les métriques et le temps de prédiction
     return accuracy, precision, recall, f1, prediction_time
+

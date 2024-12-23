@@ -15,6 +15,23 @@ model = pickle.load(open('models/model_lr.pkl', 'rb'))  # Charger le modèle
 doc2vec_model = Doc2Vec.load('models/doc2vec_model.pkl')  # Charger le modèle Doc2Vec
 selector = pickle.load(open('models/feature_selector_doc2vec.pkl', 'rb'))  # Charger le sélecteur de features pour Doc2Vec
 
+
+@app.route('/', methods=['GET'])  # Nouvelle route pour le test du webhook
+def index():
+    return "Hello world!"
+
+
+@app.route('/git_update', methods=['POST'])
+def git_update():
+    repo = git.Repo('./OC7')
+    origin = repo.remotes.origin
+    repo.create_head('main',
+                     origin.refs.main).set_tracking_branch(origin.refs.main).checkout()
+    origin.pull()
+    return '', 200
+
+
+
 @app.route('/predict', methods=['POST'])
 def predict():
     # Récupérer le texte du tweet depuis la requête

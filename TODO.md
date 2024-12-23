@@ -31,15 +31,19 @@ Faire via le evaluate_model (cf fleuryc)
 
 - Relancer les modèles sur 10% des données
 
-# TODO
-
-- Relancer BERT sur 1% des données
-
 - pipeline d’entraînement des modèles reproductible
 
 - sérialisé et stocké les modèles créés dans un registre centralisé afin de pouvoir facilement les réutiliser.
 
 - formalisé des mesures et résultats de chaque expérimentation, afin de les analyser et de les comparer
+
+
+- Setup d'un compte pythonanywhere
+
+# TODO
+
+- Relancer BERT sur 1% des données
+
 
 - pipeline de déploiement continu.
 

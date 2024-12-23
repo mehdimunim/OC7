@@ -9,9 +9,10 @@ __pycache__/
 *.pyc
 *.pyo
 
-# Fichiers de données volumineux ou sensibles (à adapter selon votre projet)
+# Fichiers de données
 data/raw/*
 data/external/*
+data/processed/*
 
 # Dossiers spécifiques à l'environnement d'exécution
 .ipynb_checkpoints/

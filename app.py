@@ -4,7 +4,8 @@ import sys
 
 # Ajouter le chemin du dossier src pour importer les modules
 sys.path.append('src')
-import preprocessing
+from clean_tweeet import clean_tweet
+
 
 app = Flask(__name__)
 
@@ -19,7 +20,7 @@ def predict():
     tweet = request.form.get('tweet')
 
     # Prétraiter le tweet
-    tweet_cleaned = preprocessing.clean_tweet(tweet)
+    tweet_cleaned = clean_tweet(tweet)
 
     # Vectoriser le tweet avec TF-IDF
     tweet_vec = vectorizer.transform([tweet_cleaned])

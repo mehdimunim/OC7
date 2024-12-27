@@ -40,12 +40,12 @@ Faire via le evaluate_model (cf fleuryc)
 
 - Setup d'un compte pythonanywhere
 
-# TODO
-
 - Relancer BERT sur 1% des données
 
 
-- pipeline de déploiement continu.
+
+# TODO
+
 
 - déployé le modèle de machine learning sous forme d'API (via Flask par exemple) et cette API renvoie bien une prédiction correspondant à une demande. 
 

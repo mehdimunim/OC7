@@ -1,8 +1,6 @@
 from flask import Flask, request, jsonify
 import pickle
 import sys
-import numpy as np
-from gensim.models import Doc2Vec  # Import de Doc2Vec
 
 # Ajouter le chemin du dossier src pour importer les modules
 sys.path.append('src')
@@ -12,25 +10,8 @@ app = Flask(__name__)
 
 # Charger le modèle et les objets de prétraitement
 model = pickle.load(open('models/model_lr.pkl', 'rb'))  # Charger le modèle
-doc2vec_model = Doc2Vec.load('models/doc2vec_model.pkl')  # Charger le modèle Doc2Vec
-selector = pickle.load(open('models/feature_selector_doc2vec.pkl', 'rb'))  # Charger le sélecteur de features pour Doc2Vec
-
-
-@app.route('/', methods=['GET'])  # Nouvelle route pour le test du webhook
-def index():
-    return "Hello world!"
-
-
-@app.route('/git_update', methods=['POST'])
-def git_update():
-    repo = git.Repo('./OC7')
-    origin = repo.remotes.origin
-    repo.create_head('main',
-                     origin.refs.main).set_tracking_branch(origin.refs.main).checkout()
-    origin.pull()
-    return '', 200
-
-
+vectorizer = pickle.load(open('models/tfidf_vectorizer.pkl', 'rb'))  # Charger le vectorizer TF-IDF
+selector = pickle.load(open('models/feature_selector_tfidf.pkl', 'rb'))  # Charger le sélecteur de features pour TF-IDF
 
 @app.route('/predict', methods=['POST'])
 def predict():
@@ -40,9 +21,8 @@ def predict():
     # Prétraiter le tweet
     tweet_cleaned = preprocessing.clean_tweet(tweet)
 
-    # Vectoriser le tweet avec Doc2Vec
-    tweet_vec = doc2vec_model.infer_vector(tweet_cleaned.split())
-    tweet_vec = np.array([tweet_vec])  # Convertir en array numpy
+    # Vectoriser le tweet avec TF-IDF
+    tweet_vec = vectorizer.transform([tweet_cleaned])
 
     # Appliquer la sélection de features
     tweet_vec = selector.transform(tweet_vec)
@@ -51,7 +31,7 @@ def predict():
     sentiment = model.predict(tweet_vec)[0]
 
     # Convertir le sentiment en "positif" ou "négatif"
-    if sentiment != 0:
+    if sentiment != 0:  # Assuming 0 is negative and 4 is positive
         sentiment_label = "positif"
     else:
         sentiment_label = "négatif"

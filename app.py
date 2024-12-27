@@ -2,11 +2,6 @@ from flask import Flask, request, jsonify
 import pickle
 import sys
 
-# Ajouter le chemin du dossier src pour importer les modules
-sys.path.append('src')
-
-
-
 import nltk
 from nltk.corpus import stopwords
 from nltk.stem import WordNetLemmatizer

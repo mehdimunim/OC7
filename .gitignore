@@ -14,6 +14,10 @@ data/raw/*
 data/external/*
 data/processed/*
 
+# Modèles trop lourds
+models/doc2vec_model.pkl
+models/word2vec_model.pkl
+
 # Dossiers spécifiques à l'environnement d'exécution
 .ipynb_checkpoints/
 .vscode/

@@ -4,7 +4,7 @@ import sys
 
 # Ajouter le chemin du dossier src pour importer les modules
 sys.path.append('src')
-from clean_tweeet import clean_tweet
+from clean_tweet import clean_tweet
 
 
 app = Flask(__name__)

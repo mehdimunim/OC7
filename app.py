@@ -10,9 +10,9 @@ from clean_tweet import clean_tweet
 app = Flask(__name__)
 
 # Charger le modèle et les objets de prétraitement
-model = pickle.load(open('models/model_lr.pkl', 'rb'))  # Charger le modèle
-vectorizer = pickle.load(open('models/tfidf_vectorizer.pkl', 'rb'))  # Charger le vectorizer TF-IDF
-selector = pickle.load(open('models/feature_selector_tfidf.pkl', 'rb'))  # Charger le sélecteur de features pour TF-IDF
+model = pickle.load(open('./models/model_lr.pkl', 'rb'))  # Charger le modèle
+vectorizer = pickle.load(open('./models/tfidf_vectorizer.pkl', 'rb'))  # Charger le vectorizer TF-IDF
+selector = pickle.load(open('./models/feature_selector_tfidf.pkl', 'rb'))  # Charger le sélecteur de features pour TF-IDF
 
 @app.route('/predict', methods=['POST'])
 def predict():

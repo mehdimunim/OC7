@@ -15,6 +15,7 @@ dependencies:
   - ipywidgets
   - wordcloud
   - jupyter
+  - flask
   - pip
   - pip:
     - mlflow  # Si tu utilises MLflow

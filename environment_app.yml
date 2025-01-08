@@ -1,0 +1,10 @@
+name: sentiment_analysis_app
+channels:
+  - conda-forge
+dependencies:
+  - python=3.8  # Ou la version de Python que tu utilises
+  - scikit-learn
+  - nltk
+  - gensim
+  - flask
+  - pip

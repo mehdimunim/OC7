@@ -1,0 +1,44 @@
+name: Deploy Sentiment Analysis API
+
+on:
+  push:
+    branches:
+      - master  # Déclencher le workflow à chaque push sur la branche master
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Set up Miniconda
+        uses: conda-incubator/setup-miniconda@v2
+        with:
+          auto-update-conda: true
+          python-version: "3.8" 
+
+      - name: Create conda environment
+        run: |
+          conda env create -f sentiment_analysis_app.yml 
+
+      - name: Activate conda environment
+        run: |
+          conda activate sentiment_analysis_app
+
+      - name: Download NLTK resources
+        run: |
+          python -m nltk.downloader popular
+
+      - name: Deploy to EC2
+        uses: appleboy/ssh-action@v0.1.7
+        with:
+          host: ${{ secrets.EC2_HOST }}
+          username: ${{ secrets.EC2_USERNAME }}
+          key: ${{ secrets.EC2_PRIVATE_KEY }}
+          script: |
+            cd OC7
+            sudo systemctl stop gunicorn  # Arrêter Gunicorn si nécessaire
+            source /home/ec2-user/miniconda/bin/activate sentiment_analysis_app
+            gunicorn --config gunicorn_config.py app:app &

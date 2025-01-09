@@ -42,12 +42,12 @@ Faire via le evaluate_model (cf fleuryc)
 
 - Relancer BERT sur 1% des données
 
+- déployé le modèle de machine learning sous forme d'API (via Flask par exemple) et cette API renvoie bien une prédiction correspondant à une demande. 
+
 
 
 # TODO
 
-
-- déployé le modèle de machine learning sous forme d'API (via Flask par exemple) et cette API renvoie bien une prédiction correspondant à une demande. 
 
 - pipeline de déploiement continu, afin de déployer l'API sur un serveur d'une plateforme Cloud. 
 
@@ -60,6 +60,21 @@ Faire via le evaluate_model (cf fleuryc)
 - stockage d’événements relatifs aux prédictions réalisées par l’API et une gestion d’alerte en cas de dégradation significative de la performance. Mise en oeuvre sur Azure Application Insight de de traces relatives à des prédictions non conformes, paramétrage de déclenchement d’alertes et exécution des alertes envoyées par mail ou SMS
 
 - Stabilité du modèle dans le temps et défini des actions d’amélioration de sa performance. Présentation dans le blog d’une démarche qui pourrait être mise en oeuvre pour l’analyse de ces statistiques et l’amélioration du modèle dans le temps
+
+
+
+
+# Bilan 
+
+
+
+
+- Taille de l'environnement virtuel (Plusieurs GiO !!). 
+J'ai dû installé un environnement simplifié à ce stade.
+
+- PythonAnywhere ==> prb de taille 
+
+- Solution : AWS
 
 
 

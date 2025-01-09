@@ -7,4 +7,5 @@ dependencies:
   - nltk
   - gensim
   - flask
+  - gunicorn
   - pip

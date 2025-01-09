@@ -3,7 +3,7 @@ name: Deploy Sentiment Analysis API
 on:
   push:
     branches:
-      - master  # Déclencher le workflow à chaque push sur la branche master
+      - master 
 
 jobs:
   deploy:
@@ -21,7 +21,11 @@ jobs:
 
       - name: Create conda environment
         run: |
-          conda env create -f environment_app.yml 
+          conda env create -f environment_app.yml  
+
+      - name: Initialize conda
+        run: |
+          conda init bash
 
       - name: Activate conda environment
         run: |
@@ -39,6 +43,6 @@ jobs:
           key: ${{ secrets.EC2_PRIVATE_KEY }}
           script: |
             cd OC7
-            sudo systemctl stop gunicorn  # Arrêter Gunicorn si nécessaire
+            sudo systemctl stop gunicorn 
             source /home/ec2-user/miniconda/bin/activate sentiment_analysis_app
             gunicorn --config gunicorn_config.py app:app &

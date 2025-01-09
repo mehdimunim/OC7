@@ -21,7 +21,7 @@ jobs:
 
       - name: Create conda environment
         run: |
-          conda env create -f sentiment_analysis_app.yml 
+          conda env create -f environment_app.yml 
 
       - name: Activate conda environment
         run: |

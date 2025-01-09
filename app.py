@@ -35,7 +35,7 @@ def predict():
     if sentiment != 0:  # Assuming 0 is negative and 4 is positive
         sentiment_label = "positif"
     else:
-        sentiment_label = "négatif"
+        sentiment_label = "negatif"
 
     # Retourner le sentiment prédit
     return jsonify({'sentiment': sentiment_label})

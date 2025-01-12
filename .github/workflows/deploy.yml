@@ -17,22 +17,24 @@ jobs:
         uses: conda-incubator/setup-miniconda@v2
         with:
           auto-update-conda: true
-          python-version: "3.8" 
+          python-version: "3.8"
+          activate-environment: sentiment_analysis_app
 
       - name: Create conda environment
+        shell: bash -l {0}
         run: |
-          conda env create -f environment_app.yml  
+          conda env create -f environment_app.yml
 
       - name: Initialize conda
+        shell: bash -l {0}
         run: |
           conda init bash
+          source ~/.bashrc
 
-      - name: Activate conda environment
+      - name: Activate conda environment and run commands
+        shell: bash -l {0}
         run: |
           conda activate sentiment_analysis_app
-
-      - name: Download NLTK resources
-        run: |
           python -m nltk.downloader popular
 
       - name: Deploy to EC2
@@ -46,3 +48,4 @@ jobs:
             sudo systemctl stop gunicorn 
             source /home/ec2-user/miniconda/bin/activate sentiment_analysis_app
             gunicorn --config gunicorn_config.py app:app &
+

@@ -30,6 +30,11 @@ jobs:
           pip install -r requirements.txt
           python -m nltk.downloader popular
 
+      - name: Run tests
+        run: |
+          source .venv/bin/activate
+          pytest tests/  # Assurez-vous que vos tests sont dans le dossier "tests"
+
       - name: Deploy to EC2
         uses: appleboy/ssh-action@v0.1.7
         with:

@@ -15,7 +15,7 @@ def test_predict_positive_sentiment(client):
 def test_predict_negative_sentiment(client):
     response = client.post('/predict', data={'tweet': 'This movie is terrible.'})
     assert response.status_code == 200
-    assert response.json['sentiment'] == 'négatif'
+    assert response.json['sentiment'] == 'negatif'
 
 def test_predict_empty_tweet(client):
     response = client.post('/predict', data={'tweet': ''})

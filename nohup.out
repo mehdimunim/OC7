@@ -26,3 +26,19 @@
 [2025-01-28 10:58:13 +0000] [1001003] [INFO] Listening at: http://0.0.0.0:8000 (1001003)
 [2025-01-28 10:58:13 +0000] [1001003] [INFO] Using worker: sync
 [2025-01-28 10:58:13 +0000] [1001005] [INFO] Booting worker with pid: 1001005
+[2025-01-28 11:16:19 +0000] [1001003] [INFO] Handling signal: term
+/home/ec2-user/OC7/.venv/lib/python3.8/site-packages/sklearn/base.py:347: InconsistentVersionWarning: Trying to unpickle estimator LogisticRegression from version 1.3.2 when using version 1.3.0. This might lead to breaking code or invalid results. Use at your own risk. For more info please refer to:
+https://scikit-learn.org/stable/model_persistence.html#security-maintainability-limitations
+  warnings.warn(
+/home/ec2-user/OC7/.venv/lib/python3.8/site-packages/sklearn/base.py:347: InconsistentVersionWarning: Trying to unpickle estimator TfidfTransformer from version 1.3.2 when using version 1.3.0. This might lead to breaking code or invalid results. Use at your own risk. For more info please refer to:
+https://scikit-learn.org/stable/model_persistence.html#security-maintainability-limitations
+  warnings.warn(
+/home/ec2-user/OC7/.venv/lib/python3.8/site-packages/sklearn/base.py:347: InconsistentVersionWarning: Trying to unpickle estimator TfidfVectorizer from version 1.3.2 when using version 1.3.0. This might lead to breaking code or invalid results. Use at your own risk. For more info please refer to:
+https://scikit-learn.org/stable/model_persistence.html#security-maintainability-limitations
+  warnings.warn(
+/home/ec2-user/OC7/.venv/lib/python3.8/site-packages/sklearn/base.py:347: InconsistentVersionWarning: Trying to unpickle estimator SelectKBest from version 1.3.2 when using version 1.3.0. This might lead to breaking code or invalid results. Use at your own risk. For more info please refer to:
+https://scikit-learn.org/stable/model_persistence.html#security-maintainability-limitations
+  warnings.warn(
+[2025-01-28 11:16:19 +0000] [1001005] [INFO] Worker exiting (pid: 1001005)
+[2025-01-28 11:16:19 +0000] [1001003] [ERROR] Worker (pid:1001005) was sent SIGTERM!
+[2025-01-28 11:16:19 +0000] [1001003] [INFO] Shutting down: Master

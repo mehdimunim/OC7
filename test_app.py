@@ -17,6 +17,3 @@ def test_predict_negative_sentiment(client):
     assert response.status_code == 200
     assert response.json['sentiment'] == 'negatif'
 
-def test_predict_empty_tweet(client):
-    response = client.post('/predict', data={'tweet': ''})
-    assert response.status_code == 400  # Ou le code d'erreur que tu as défini

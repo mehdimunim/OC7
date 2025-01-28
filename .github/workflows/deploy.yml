@@ -38,6 +38,6 @@ jobs:
           key: ${{ secrets.EC2_PRIVATE_KEY }}
           script: |
             cd OC7
-            sudo pkill gunicorn
+            sudo -s pkill gunicorn
             source .venv/bin/activate
             gunicorn --config gunicorn_config.py app:app &

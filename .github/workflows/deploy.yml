@@ -3,7 +3,7 @@ name: Deploy Sentiment Analysis API
 on:
   push:
     branches:
-      - master 
+      - master
 
 jobs:
   deploy:
@@ -13,28 +13,21 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v3
 
-      - name: Set up Miniconda
-        uses: conda-incubator/setup-miniconda@v2
+      - name: Set up Python
+        uses: actions/setup-python@v4
         with:
-          auto-update-conda: true
           python-version: "3.8"
-          activate-environment: sentiment_analysis_app
 
-      - name: Create conda environment
+      - name: Create virtual environment
         shell: bash -l {0}
         run: |
-          conda env create -f environment_app.yml
+          python3 -m venv .venv
 
-      - name: Initialize conda
+      - name: Activate virtual environment and run commands
         shell: bash -l {0}
         run: |
-          conda init bash
-          source ~/.bashrc
-
-      - name: Activate conda environment and run commands
-        shell: bash -l {0}
-        run: |
-          conda activate sentiment_analysis_app
+          source .venv/bin/activate
+          pip install -r requirements.txt
           python -m nltk.downloader popular
 
       - name: Deploy to EC2
@@ -45,7 +38,6 @@ jobs:
           key: ${{ secrets.EC2_PRIVATE_KEY }}
           script: |
             cd OC7
-            sudo systemctl stop gunicorn 
-            source /home/ec2-user/miniconda/bin/activate sentiment_analysis_app
+            sudo systemctl stop gunicorn
+            source .venv/bin/activate
             gunicorn --config gunicorn_config.py app:app &
-

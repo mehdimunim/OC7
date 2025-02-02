@@ -6,7 +6,7 @@ def client():
     app.config['TESTING'] = True
     with app.test_client() as client:
         yield client
-# test
+# test 
 def test_predict_positive_sentiment(client):
     response = client.post('/predict', data={'tweet': 'This is a great movie!'})
     assert response.status_code == 200

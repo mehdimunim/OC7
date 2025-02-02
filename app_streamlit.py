@@ -1,5 +1,7 @@
 import streamlit as st
 import requests
+import boto3
+import os
 
 # Fonction pour prédire le sentiment
 def predict_sentiment(tweet):
@@ -28,17 +30,20 @@ if st.button("Signaler une erreur"):
     st.write(f"Nombre d'erreurs signalées: {st.session_state.error_count}")
 
     if st.session_state.error_count >= 3:
-    # Envoyer une alerte à CloudWatch
-    client = boto3.client('cloudwatch')
-    response = client.put_metric_data(
-        Namespace='AnalyseSentiment',
-        MetricData=[
-            {
-                'MetricName': 'ErreursSignalees',
-                'Value': 1,
-                'Unit': 'Count'
-            },
-        ]
-    )
-    st.warning("Alerte CloudWatch envoyée!")
-    st.session_state.error_count = 0
+        # Envoyer une alerte à CloudWatch
+        # Pas besoin de spécifier les identifiants AWS ici
+        client = boto3.client('cloudwatch')
+
+        response = client.put_metric_data(
+            Namespace='AnalyseSentiment',
+            MetricData=[
+                {
+                    'MetricName': 'ErreursSignalees',
+                    'Value': 1,
+                    'Unit': 'Count'
+                },
+            ]
+        )
+
+        st.warning("Alerte CloudWatch envoyée!")
+        st.session_state.error_count = 0  # Réinitialiser le compteur

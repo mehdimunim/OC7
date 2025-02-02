@@ -45,7 +45,6 @@ jobs:
           command_timeout: 20m
           script: |
             cd OC7
-            pkill -15 -f "gunicorn.*app:app" 
             sleep 10
             # Vérifier si les processus sont actifs
             pgrep -f "gunicorn.*app:app" && (echo "Processus résiduels"; exit 1)

@@ -45,7 +45,7 @@ jobs:
           command_timeout: 20m
           script: |
             cd OC7
-            if ps aux | grep -v grep | grep -q "gunicorn.*app:app"; then
+            if ps aux | grep "gunicorn.*app:app"; then
               pkill -f "gunicorn.*app:app"
             fi
             sleep 5

@@ -42,7 +42,7 @@ jobs:
           username: ${{ secrets.EC2_USERNAME }}
           key: ${{ secrets.EC2_PRIVATE_KEY }}
           script_stop: true
-          command_timeout: 20m
+          command_timeout: 1m
           script: |
             cd OC7
             if ps aux | grep -v grep | grep -q "gunicorn.*app:app"; then pkill -f "gunicorn.*app:app"; fi

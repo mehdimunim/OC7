@@ -45,7 +45,7 @@ jobs:
           command_timeout: 20m
           script: |
             cd OC7
-            sleep 10
+            sleep 5
             source .venv/bin/activate
             nohup gunicorn --config gunicorn_config.py app:app > gunicorn.log 2>&1 &
             sleep 5

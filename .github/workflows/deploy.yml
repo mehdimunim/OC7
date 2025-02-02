@@ -46,7 +46,7 @@ jobs:
           script: |
             cd OC7
             if ps aux | grep -v grep | grep -q "gunicorn.*app:app"; then
-              kill -9 "gunicorn.*app:app"
+                kill -9 "gunicorn.*app:app"
             fi
             sleep 5
             source .venv/bin/activate

@@ -47,7 +47,6 @@ jobs:
             cd OC7
             sleep 5
             source .venv/bin/activate
-            pkill gunicorn
             nohup gunicorn --config gunicorn_config.py app:app > gunicorn.log 2>&1 &
             sleep 5
             echo "Deployement completed"

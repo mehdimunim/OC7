@@ -51,9 +51,10 @@ Faire via le evaluate_model (cf fleuryc)
 
 - Réalisation de l'API
 
-# TODO
-
 - Réalisation notebook avec widget pour la prédiction
+
+
+# TODO
 
 - CloudWatch ==> lancement d'une alerte email au bout de 3 erreurs
 

@@ -11,6 +11,9 @@ def predict_sentiment(tweet):
 # Interface Streamlit
 st.title("Analyse de sentiment")
 
+if 'error_count' not in st.session_state:
+    st.session_state.error_count = 0
+
 tweet = st.text_input("Entrez un tweet")
 
 if st.button("Prédire"):
@@ -19,3 +22,23 @@ if st.button("Prédire"):
         st.write(f"Sentiment prédit: {sentiment}")
     else:
         st.warning("Veuillez entrer un tweet.")
+
+if st.button("Signaler une erreur"):
+    st.session_state.error_count += 1
+    st.write(f"Nombre d'erreurs signalées: {st.session_state.error_count}")
+
+    if st.session_state.error_count >= 3:
+    # Envoyer une alerte à CloudWatch
+    client = boto3.client('cloudwatch')
+    response = client.put_metric_data(
+        Namespace='AnalyseSentiment',
+        MetricData=[
+            {
+                'MetricName': 'ErreursSignalees',
+                'Value': 1,
+                'Unit': 'Count'
+            },
+        ]
+    )
+    st.warning("Alerte CloudWatch envoyée!")
+    st.session_state.error_count = 0

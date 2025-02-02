@@ -45,39 +45,25 @@ Faire via le evaluate_model (cf fleuryc)
 
 - déployé le modèle de machine learning sous forme d'API (via Flask par exemple) et cette API renvoie bien une prédiction correspondant à une demande. 
 
+- Pipleine de déploiement continu 
 
+- Tests unitaires automatisés
+
+- Réalisation de l'API
 
 # TODO
 
+- Réalisation notebook avec widget pour la prédiction
 
-- pipeline de déploiement continu, afin de déployer l'API sur un serveur d'une plateforme Cloud. 
+- CloudWatch ==> lancemnet d'une alerte email au bout de 3 erreurs
 
-- tests unitaires automatisés (par exemple avec pyTest)
+- Rédaction article blog
 
-- réalisé l'API indépendamment de l'application qui utilise le résultat de la prédiction. 
+- Réaliser la présentation
 
 - stratégie de suivi de la performance du modèle. Choix d’utiliser Azure Application Insight pour le suivi de traces de prédictions non conformes et de déclenchement d’alertes
 
 - stockage d’événements relatifs aux prédictions réalisées par l’API et une gestion d’alerte en cas de dégradation significative de la performance. Mise en oeuvre sur Azure Application Insight de de traces relatives à des prédictions non conformes, paramétrage de déclenchement d’alertes et exécution des alertes envoyées par mail ou SMS
 
-- Stabilité du modèle dans le temps et défini des actions d’amélioration de sa performance. Présentation dans le blog d’une démarche qui pourrait être mise en oeuvre pour l’analyse de ces statistiques et l’amélioration du modèle dans le temps
-
-
-
-
-# Bilan 
-
-
-
-
-- Taille de l'environnement virtuel (Plusieurs GiO !!). 
-J'ai dû installé un environnement simplifié à ce stade.
-
-- PythonAnywhere ==> prb de taille 
-
-- Solution : AWS
-
-
-
-
+- Stabilité du modèle dans le temps et défini des actions d’amélioration de sa performance. Présentation dans le blog d’une démarche qui pourrait être mise en oeuvre pour l’analyse de ces statistiques et l’amélioration du modèle dans le temps.
 

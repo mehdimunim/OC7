@@ -41,9 +41,13 @@ jobs:
           host: ${{ secrets.EC2_HOST }}
           username: ${{ secrets.EC2_USERNAME }}
           key: ${{ secrets.EC2_PRIVATE_KEY }}
+          script_stop: true
+          command_timeout: 20m
           script: |
             cd OC7
             pkill -f "gunicorn.*app:app" || true
             sleep 5
             source .venv/bin/activate
             gunicorn --config gunicorn_config.py app:app &
+            sleep 10
+            echo "Deployement completed"

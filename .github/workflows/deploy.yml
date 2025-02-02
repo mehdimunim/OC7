@@ -45,9 +45,11 @@ jobs:
           command_timeout: 1m
           script: |
             cd OC7
-            pkill -f "gunicorn.*app:app"
-            sleep 5
+            pkill -15 -f "gunicorn.*app:app" 
+            sleep 10
+            # Vérifier si les processus sont actifs
+            pgrep -f "gunicorn.*app:app" && (echo "Processus résiduels"; exit 1)
             source .venv/bin/activate
-            nohup gunicorn --config gunicorn_config.py app:app &
+            nohup gunicorn --config gunicorn_config.py app:app > gunicorn.log 2>&1 &
             sleep 5
             echo "Deployement completed"

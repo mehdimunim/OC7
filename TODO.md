@@ -55,15 +55,12 @@ Faire via le evaluate_model (cf fleuryc)
 
 - Réalisation notebook avec widget pour la prédiction
 
-- CloudWatch ==> lancemnet d'une alerte email au bout de 3 erreurs
+- CloudWatch ==> lancement d'une alerte email au bout de 3 erreurs
 
 - Rédaction article blog
 
 - Réaliser la présentation
 
-- stratégie de suivi de la performance du modèle. Choix d’utiliser Azure Application Insight pour le suivi de traces de prédictions non conformes et de déclenchement d’alertes
+- Rerédiger au propre le README.md (requirements, how to launch etc.)
 
-- stockage d’événements relatifs aux prédictions réalisées par l’API et une gestion d’alerte en cas de dégradation significative de la performance. Mise en oeuvre sur Azure Application Insight de de traces relatives à des prédictions non conformes, paramétrage de déclenchement d’alertes et exécution des alertes envoyées par mail ou SMS
-
-- Stabilité du modèle dans le temps et défini des actions d’amélioration de sa performance. Présentation dans le blog d’une démarche qui pourrait être mise en oeuvre pour l’analyse de ces statistiques et l’amélioration du modèle dans le temps.
 

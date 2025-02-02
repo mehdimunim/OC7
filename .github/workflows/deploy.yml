@@ -45,11 +45,11 @@ jobs:
           command_timeout: 20m
           script: |
             cd OC7
-            if ps aux | grep "gunicorn.*app:app"; then
-              pkill -f "gunicorn.*app:app"
+            if ps aux | grep -v grep | grep -q "gunicorn.*app:app"; then
+              kill -9 "gunicorn.*app:app"
             fi
             sleep 5
             source .venv/bin/activate
-            gunicorn --config gunicorn_config.py app:app &
-            sleep 10
+            nohup gunicorn --config gunicorn_config.py app:app &
+            sleep 5
             echo "Deployement completed"

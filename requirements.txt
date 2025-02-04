@@ -9,5 +9,9 @@ pytest==8.3.4
 streamlit
 boto3
 awscli
-
-
+jupyterlab
+seaborn
+tensorflow
+transformers
+mlflow
+tensorflow_hub

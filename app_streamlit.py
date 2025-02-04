@@ -46,4 +46,4 @@ if st.button("Signaler une erreur"):
         )
 
         st.warning("Alerte CloudWatch envoyée!")
-        st.session_state.error_count = 0  # Réinitialiser le compteur
+        #st.session_state.error_count = 0  # Réinitialiser le compteur

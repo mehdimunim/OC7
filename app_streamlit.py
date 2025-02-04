@@ -29,7 +29,7 @@ if st.button("Signaler une erreur"):
     st.session_state.error_count += 1
     st.write(f"Nombre d'erreurs signalées: {st.session_state.error_count}")
 
-    if st.session_state.error_count >= 3:
+    if st.session_state.error_count >= 1:
         # Envoyer une alerte à CloudWatch
         # Pas besoin de spécifier les identifiants AWS ici
         client = boto3.client('cloudwatch')

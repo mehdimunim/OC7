@@ -55,11 +55,11 @@ Ce projet vise à développer un modèle de Deep Learning capable de détecter l
 1. Cloner le dépôt GitHub
 2. Créer un environnement virtuel Python:
    ```bash
-   python3 -m venv.venv
+   python3 -m venv .venv
    ```
 3. Activer l'environnement virtuel:
    ```bash
-   source.venv/bin/activate  # Sur Linux/macOS
+   source .venv/bin/activate  # Sur Linux/macOS
    .venv\Scripts\activate  # Sur Windows
    ```
 4. Installer les packages nécessaires avec `pip install -r requirements.txt`

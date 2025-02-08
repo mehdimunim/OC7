@@ -43,3 +43,6 @@ env/
 
 # Fichiers et dossiers MLflow
 mlruns/
+
+# Fichiers de sortie de gunicorn
+.nohup.out

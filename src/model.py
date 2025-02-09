@@ -84,7 +84,39 @@ def create_lstm_model(input_shape, embedding_matrix):
 
     return model
     
+def create_distilbert_model(model_name="distilbert-base-uncased"):
+    """
+    Crée et compile un modèle DistilBERT pour la classification de séquences,
+    avec un tokenizer associé.
 
+    Args:
+        model_name (str, optional): Le nom du modèle pré-entraîné DistilBERT à charger
+            depuis Hugging Face Transformers.  Par défaut, "distilbert-base-uncased".
+            Vous pouvez utiliser d'autres modèles comme "distilbert-base-cased",
+            "distilbert-base-multilingual-cased", etc.
+
+    Returns:
+        tuple: Un tuple contenant:
+            - model (TFDistilBertForSequenceClassification): Le modèle DistilBERT compilé.
+            - tokenizer (DistilBertTokenizer): Le tokenizer DistilBERT pré-entraîné.
+    """
+
+    # Charger le tokenizer pré-entraîné DistilBERT.
+    tokenizer = DistilBertTokenizer.from_pretrained(model_name)
+
+    # Charger le modèle DistilBERT pré-entraîné pour la classification de séquences.
+    model = TFDistilBertForSequenceClassification.from_pretrained(model_name, num_labels=2)
+
+    # Définir la fonction de perte.  SparseCategoricalCrossentropy est utilisée lorsque
+    loss = tf.keras.losses.SparseCategoricalCrossentropy(from_logits=True)
+
+    # Compiler le modèle.  La compilation configure le processus d'entraînement.
+    model.compile(optimizer='adam',
+                  loss=loss,
+                  metrics=['accuracy'])
+
+    return model, tokenizer
+    
 def create_bert_model(model_name="bert-base-uncased"):
     """
     Crée un modèle BERT.

@@ -14,9 +14,11 @@ data/raw/*
 data/external/*
 data/processed/*
 
-# Modèles trop lourds
-models/doc2vec_model.pkl
-models/word2vec_model.pkl
+# Filtrer le dossier modèles
+models/*
+!models/feature_selector_tfidf.pkl
+!models/model_lr.pkl
+!models/tfidf_vectorizer.pkl
 
 # Dossiers spécifiques à l'environnement d'exécution
 .ipynb_checkpoints/
@@ -45,4 +47,4 @@ env/
 mlruns/
 
 # Fichiers de sortie de gunicorn
-.nohup.out
+nohup.out

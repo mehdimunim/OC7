@@ -42,7 +42,11 @@ def vectorize_word2vec(X_train, X_test):
 
     # Entraînement du modèle Word2Vec sur les tweets prétraités
     sentences = [tweet.split() for tweet in X_train]
-    model_w2v = Word2Vec(sentences, vector_size=100, window=5, min_count=1, workers=4)
+    model_w2v = Word2Vec(sentences,
+                         vector_size=500,
+                         window=5,
+                         min_count=1,
+                         workers=4)
 
     # Fonction pour vectoriser un tweet en utilisant la moyenne des embeddings Word2Vec
     def vectorize_tweet_w2v(tweet):
@@ -78,7 +82,11 @@ def vectorize_doc2vec(X_train, X_test):
     documents = [TaggedDocument(doc.split(), [i]) for i, doc in enumerate(X_train)]
 
     # Entraînement du modèle Doc2Vec
-    model_d2v = Doc2Vec(documents, vector_size=100, window=5, min_count=1, workers=4)
+    model_d2v = Doc2Vec(documents,
+                        vector_size=500,
+                        window=5,
+                        min_count=1,
+                        workers=4)
 
     # Fonction pour vectoriser un tweet en utilisant l'embedding Doc2Vec
     def vectorize_tweet_d2v(tweet):

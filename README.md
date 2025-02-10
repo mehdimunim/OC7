@@ -2,16 +2,16 @@
 
 ## Description
 
-Ce projet vise à développer un modèle de Deep Learning capable de détecter les bad buzz (opinions négatives) sur les réseaux sociaux, en se concentrant sur l'analyse de sentiment des tweets. L'objectif est de construire un modèle capable de prédire avec précision si un tweet exprime un sentiment positif ou négatif.
+L'entreprise "Air Paradis" nous commissione pour développer un modèle de Deep Learning capable de détecter les bad buzz (opinions négatives) sur les réseaux sociaux. Le modèle sera entraîné sur des données opensource (tweets)[https://www.kaggle.com/kazanova/sentiment140]. L'objectif est de construire un modèle capable de prédire avec précision si un tweet exprime un sentiment positif ou négatif.
 
-## Objectifs
+## Étapes
 
-- **Collecte et préparation des données**: Collecter un jeu de données de tweets étiquetés (positif/négatif) et le préparer pour l'entraînement du modèle (nettoyage, prétraitement, vectorisation).
-- **Développement d'un modèle de Deep Learning**: Concevoir et implémenter un modèle de Deep Learning pour la classification de sentiment.
-- **Entraînement et évaluation du modèle**: Entraîner le modèle sur les données préparées et évaluer ses performances en utilisant des métriques appropriées.
-- **Optimisation du modèle**: Optimiser les hyperparamètres du modèle pour améliorer ses performances.
-- **Déploiement du modèle**: Déployer le modèle sur une plateforme cloud et le rendre accessible via une API.
-- **Surveillance du modèle**: Mettre en place un système de surveillance pour suivre les performances du modèle en production.
+-  Collecter un jeu de données de tweets étiquetés (positif/négatif) et le préparer pour l'entraînement du modèle (nettoyage, prétraitement, vectorisation).
+- Concevoir et implémenter un modèle de Deep Learning pour la classification de sentiment.
+- Entraîner le modèle sur les données préparées et évaluer ses performances en utilisant des métriques appropriées.
+- Optimiser les hyperparamètres du modèle pour améliorer ses performances.
+- Déployer le modèle sur une plateforme cloud et le rendre accessible via une API.
+- Mettre en place un système de surveillance pour suivre les performances du modèle en production.
 
 ## Structure du projet
 
@@ -47,7 +47,7 @@ Ce projet vise à développer un modèle de Deep Learning capable de détecter l
 - **`models/`**: Contient les modèles entraînés.
 - **`src/`**: Contient les scripts Python pour le prétraitement, la modélisation et l'évaluation.
 - **`requirements.txt`**: Liste des packages Python nécessaires.
-- **`README.md`**: Ce fichier.
+- **`README.md`**
 - **`.gitignore`**: Fichier qui spécifie les fichiers et dossiers à ignorer par Git.
 
 ## Installation
@@ -69,11 +69,6 @@ Ce projet vise à développer un modèle de Deep Learning capable de détecter l
 1.  Ouvrir les notebooks Jupyter dans l'ordre.
 2.  Exécuter les cellules des notebooks pour effectuer les différentes étapes du projet.
 
-## Remarques
-
-- Ce projet utilise Python et des librairies comme pandas, scikit-learn, TensorFlow, Transformers et MLflow.
-- Le jeu de données utilisé est un jeu de données de tweets étiquetés (positif/négatif).
-- Le modèle de Deep Learning utilisé est un modèle BERT fine-tuné pour la classification de sentiment.
 
 ## Contributeurs
 

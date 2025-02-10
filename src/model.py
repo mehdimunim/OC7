@@ -2,8 +2,7 @@ import os
 from tensorflow.keras.models import Sequential
 from tensorflow.keras.layers import Dense, Dropout, Embedding, LSTM, Conv1D, MaxPooling1D, Flatten, Input, Lambda
 import tensorflow as tf
-from transformers import BertTokenizer, TFBertForSequenceClassification
-
+from transformers import BertTokenizer, TFBertForSequenceClassification, DistilBertTokenizer, TFDistilBertForSequenceClassification
 
 def create_mlp_model(input_shape):
     """

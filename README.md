@@ -68,7 +68,7 @@ L'entreprise "Air Paradis" nous commissione pour développer un modèle de Deep 
 
 1.  Ouvrir les notebooks Jupyter dans l'ordre.
 2.  Exécuter les cellules des notebooks pour effectuer les différentes étapes du projet.
-
+3.  Pour utiliser l'API streamlit (prédiction de tweet ) : 
 
 ## Contributeurs
 
